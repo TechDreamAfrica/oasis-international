@@ -1,6 +1,6 @@
 // Firebase Configuration
 import { db, auth } from './firebase-config.js';
-import { collection, addDoc, getDocs, query, orderBy, limit, doc, setDoc, where, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { collection, addDoc, getDocs, query, orderBy, limit, doc, setDoc, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { initSiteImages } from './site-images.js';
 
@@ -1855,12 +1855,4 @@ window.addEventListener('load', async () => {
     await updateStatistics();
 });
 
-// Service Worker Registration (for PWA - optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment to enable service worker
-        // navigator.serviceWorker.register('/sw.js');
-    });
-}
-
-console.log('Oasis IMG Website Loaded Successfully');
+console.log('Oasis International Ministries Website Loaded Successfully');
