@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Oasis IMG Ministries Ghana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo.jpg" alt="Oasis IMG Logo" class="h-12 w-auto" onerror="this.src='assets/images/logo.jpg';">
+                        <span class="ml-3 text-xl font-bold text-blue-900">Oasis IMG</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu - Centered -->
+                <div class="hidden lg:flex items-center justify-center flex-1 mx-8">
+                    <div class="flex items-center space-x-6">
+                        <a href="index.html" class="text-gray-700 hover:text-blue-900 transition">Home</a>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-blue-900 transition flex items-center py-2">
+                                About <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="about.html" class="block px-4 py-2 hover:bg-blue-50">About Us</a>
+                                <a href="leadership.html" class="block px-4 py-2 hover:bg-blue-50">Leadership</a>
+                                <a href="ministries.html" class="block px-4 py-2 hover:bg-blue-50">Ministries</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-blue-900 transition flex items-center py-2">
+                                Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="obi/index.html" class="block px-4 py-2 hover:bg-blue-50">Bible Institute</a>
+                                <a href="obi/admissions.html" class="block px-4 py-2 hover:bg-blue-50">OBI Admissions</a>
+                                <a href="admissions.html" class="block px-4 py-2 hover:bg-blue-50">Ministry Training</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-blue-900 transition flex items-center py-2">
+                                Get Involved <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="credential-application.html" class="block px-4 py-2 hover:bg-blue-50">Credential Application</a>
+                                <a href="sponsor-student.html" class="block px-4 py-2 hover:bg-blue-50">Sponsor a Student</a>
+                                <a href="contact.html" class="block px-4 py-2 hover:bg-blue-50 bg-blue-100 font-semibold">Contact Us</a>
+                            </div>
+                        </div>
+
+                        <a href="gallery.html" class="text-gray-700 hover:text-blue-900 transition">Gallery</a>
+                    </div>
+                </div>
+
+                <!-- Right Side - Auth Buttons -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div id="user-menu" class="hidden">
+                        <div class="relative group">
+                            <button class="flex items-center text-gray-700 hover:text-blue-900 transition py-2">
+                                <i class="fas fa-user-circle text-2xl"></i>
+                                <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-48 z-50 top-full">
+                                <a href="dashboard/index.html" class="block px-4 py-2 hover:bg-blue-50">Dashboard</a>
+                                <button onclick="window.handleSignOut()" class="w-full text-left block px-4 py-2 hover:bg-blue-50 text-red-600">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="sign-in-btn" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                        Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-900">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-700">Home</a>
+                <a href="about.html" class="block text-gray-700">About Us</a>
+                <a href="leadership.html" class="block text-gray-700 pl-4">Leadership</a>
+                <a href="ministries.html" class="block text-gray-700 pl-4">Ministries</a>
+                <a href="obi/index.html" class="block text-gray-700">Bible Institute</a>
+                <a href="obi/admissions.html" class="block text-gray-700 pl-4">OBI Admissions</a>
+                <a href="admissions.html" class="block text-gray-700 pl-4">Ministry Training</a>
+                <a href="credential-application.html" class="block text-gray-700">Credential Application</a>
+                <a href="sponsor-student.html" class="block text-gray-700 pl-4">Sponsor Student</a>
+                <a href="contact.html" class="block text-blue-900 font-semibold pl-4">Contact</a>
+                <a href="gallery.html" class="block text-gray-700">Gallery</a>
+                <button id="mobile-sign-in-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-center mt-2">Sign In</button>
+                <div id="mobile-user-menu" class="hidden">
+                    <a href="dashboard/index.html" class="block text-gray-700 pl-4">Dashboard</a>
+                    <button onclick="window.handleSignOut()" class="w-full text-left text-red-600 px-4 py-2">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="mt-20 bg-blue-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+            <nav class="breadcrumb text-blue-200">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <span class="breadcrumb-item">Contact</span>
+            </nav>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        We'd love to hear from you. Whether you have questions, need prayer, or want to get involved, reach out to us.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-900 mb-1">Address</h3>
+                                <p class="text-gray-600">123 Oasis Street<br>Accra, Ghana</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-phone text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-900 mb-1">Phone</h3>
+                                <p class="text-gray-600">+233 123 456 789<br>+233 987 654 321</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-900 mb-1">Email</h3>
+                                <p class="text-gray-600">info@oasisimg.org<br>admin@oasisimg.org</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-clock text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-900 mb-1">Office Hours</h3>
+                                <p class="text-gray-600">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 2:00 PM<br>Sunday: Closed (Join us for service!)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-church text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-900 mb-1">Service Times</h3>
+                                <p class="text-gray-600">Sunday: 8:00 AM & 10:30 AM<br>Wednesday: 6:00 PM<br>Friday: 7:00 PM (Youth Service)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-gray-900 mb-3">Connect With Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                                <i class="fab fa-facebook text-xl"></i>
+                            </a>
+                            <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Name *</label>
+                                <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email *</label>
+                                <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Phone</label>
+                            <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Subject *</label>
+                            <select name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="prayer">Prayer Request</option>
+                                <option value="ministry">Ministry Information</option>
+                                <option value="admission">Admission Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Message *</label>
+                            <textarea name="message" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="How can we help you?"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Find Us</h2>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.8094572843564!2d-0.1870!3d5.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzYnMTMuMyJOIDDCsDExJzEzLjIiVw!5e0!3m2!1sen!2sgh!4v1234567890"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-blue-600 rounded-2xl p-12 text-center text-white">
+                <h2 class="text-4xl font-bold mb-4">Visit Us This Sunday</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">
+                    Experience life-changing worship and powerful biblical teaching. Everyone is welcome!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="about.html" class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
+                        Learn More About Us
+                    </a>
+                    <a href="ministries.html" class="bg-blue-800 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-900 transition">
+                        Explore Ministries
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Oasis IMG</h4>
+                    <p class="text-gray-400">Transforming lives through the Gospel of Jesus Christ.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="ministries.html" class="text-gray-400 hover:text-white transition">Ministries</a></li>
+                        <li><a href="leadership.html" class="text-gray-400 hover:text-white transition">Leadership</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="obi/index.html" class="text-gray-400 hover:text-white transition">Bible Institute</a></li>
+                        <li><a href="admissions.html" class="text-gray-400 hover:text-white transition">Admissions</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition">Gallery</a></li>
+                        <li><a href="dashboard/login.html" class="text-gray-400 hover:text-white transition">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Oasis IMG Ministries Ghana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module">
+        import { db } from './assets/js/firebase-config.js';
+        import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const contactForm = document.getElementById('contact-form');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+
+            try {
+                const formData = new FormData(contactForm);
+                const contactData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone') || '',
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    status: 'unread',
+                    submittedAt: new Date().toISOString()
+                };
+
+                await addDoc(collection(db, 'contacts'), contactData);
+
+                alert('Thank you for contacting us! We will get back to you soon.');
+                contactForm.reset();
+            } catch (error) {
+                console.error('Error submitting contact form:', error);
+                alert('Error sending message. Please try again or contact us directly.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    </script>
+</body>
+</html>

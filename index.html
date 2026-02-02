@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis International Ministries | Bringing Christ to America, Africa and Beyond</title>
+    <meta name="description" content="Oasis International Ministries - Building churches, supporting orphanages, and training ministers across West Africa. Join our mission to transform lives through the Gospel.">
+    <meta name="keywords" content="Oasis International Ministries, Church Building, West Africa, Orphanage Support, Minister Training, Christian Missions">
+    <meta name="author" content="Oasis International Ministries">
+    <meta property="og:title" content="Oasis International Ministries | Bringing Christ to America, Africa and Beyond">
+    <meta property="og:description" content="Building churches, supporting orphanages, and training ministers across West Africa. Transforming lives through the Gospel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oasisimg.org">
+    <meta property="og:image" content="https://oasisimg.org/assets/images/logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Oasis IMG Ministries Ghana">
+    <meta name="twitter:description" content="Empowering leaders, transforming communities through biblical education and ministry training.">
+    <link rel="canonical" href="https://oasisimg.org">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo.jpg" alt="Oasis International Ministries Logo" class="h-12 w-auto" onerror="this.src='assets/images/logo.jpg';">
+                        <span class="ml-3 text-xl font-bold text-green-800">Oasis International Ministries</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu - Centered -->
+                <div class="hidden lg:flex items-center justify-center flex-1 mx-8">
+                    <div class="flex items-center space-x-6">
+                        <a href="index.html" class="text-green-800 font-semibold border-b-2 border-green-600">Home</a>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-green-800 transition flex items-center py-2">
+                                About <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="about.html" class="block px-4 py-2 hover:bg-green-50">About Us</a>
+                                <a href="leadership.html" class="block px-4 py-2 hover:bg-green-50">Our Founders</a>
+                                <a href="ministries.html" class="block px-4 py-2 hover:bg-green-50">Ministries</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-blue-900 transition flex items-center py-2">
+                                Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="obi/index.html" class="block px-4 py-2 hover:bg-blue-50">Bible Institute</a>
+                                <a href="obi/admissions.html" class="block px-4 py-2 hover:bg-blue-50">OBI Admissions</a>
+                                <a href="admissions.html" class="block px-4 py-2 hover:bg-blue-50">Ministry Training</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-blue-900 transition flex items-center py-2">
+                                Get Involved <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="credential-application.html" class="block px-4 py-2 hover:bg-blue-50">Credential Application</a>
+                                <a href="sponsor-student.html" class="block px-4 py-2 hover:bg-blue-50">Sponsor a Student</a>
+                                <a href="contact.html" class="block px-4 py-2 hover:bg-blue-50">Contact Us</a>
+                            </div>
+                        </div>
+
+                        <a href="gallery.html" class="text-gray-700 hover:text-blue-900 transition">Gallery</a>
+                    </div>
+                </div>
+
+                <!-- Right Side - Auth Buttons -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div id="user-menu" class="hidden">
+                        <div class="relative group">
+                            <button class="flex items-center text-gray-700 hover:text-blue-900 transition py-2">
+                                <i class="fas fa-user-circle text-2xl"></i>
+                                <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-48 z-50 top-full">
+                                <a href="dashboard/index.html" class="block px-4 py-2 hover:bg-blue-50">Dashboard</a>
+                                <button onclick="window.handleSignOut()" class="w-full text-left block px-4 py-2 hover:bg-blue-50 text-red-600">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="sign-in-btn" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                        Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-900">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-blue-900 font-semibold">Home</a>
+                <a href="about.html" class="block text-gray-700">About Us</a>
+                <a href="leadership.html" class="block text-gray-700 pl-4">Leadership</a>
+                <a href="ministries.html" class="block text-gray-700 pl-4">Ministries</a>
+                <a href="obi/index.html" class="block text-gray-700">Bible Institute</a>
+                <a href="obi/admissions.html" class="block text-gray-700 pl-4">OBI Admissions</a>
+                <a href="admissions.html" class="block text-gray-700 pl-4">Ministry Training</a>
+                <a href="credential-application.html" class="block text-gray-700">Credential Application</a>
+                <a href="sponsor-student.html" class="block text-gray-700 pl-4">Sponsor Student</a>
+                <a href="contact.html" class="block text-gray-700 pl-4">Contact</a>
+                <a href="gallery.html" class="block text-gray-700">Gallery</a>
+                <button id="mobile-sign-in-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-center mt-2">Sign In</button>
+                <div id="mobile-user-menu" class="hidden">
+                    <a href="dashboard/index.html" class="block text-gray-700 pl-4">Dashboard</a>
+                    <button onclick="window.handleSignOut()" class="w-full text-left text-red-600 px-4 py-2">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <section class="mt-20 relative">
+        <div id="carousel" class="relative h-[600px] overflow-hidden">
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-600/60"></div>
+                <img src="assets/images/building.jpg" alt="Ministry" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4">Welcome to Oasis IMG</h1>
+                        <p class="text-xl md:text-2xl mb-8">Transforming Lives Through the Gospel</p>
+                        <a href="about.html" class="bg-white text-blue-900 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-green-600/60"></div>
+                <img src="assets/images/class.jpg" alt="Bible Institute" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4">Oasis Bible Institute</h1>
+                        <p class="text-xl md:text-2xl mb-8">Equipping Leaders for Kingdom Service</p>
+                        <a href="obi/index.html" class="bg-white text-green-900 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Visit OBI</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000 opacity-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-purple-600/60"></div>
+                <img src="assets/images/leadership.jpg" alt="Community" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4">Join Our Community</h1>
+                        <p class="text-xl md:text-2xl mb-8">Making a Difference in Ghana</p>
+                        <a href="contact.html" class="bg-white text-purple-900 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Get Involved</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button id="prev-slide" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-3 rounded-full transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="next-slide" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-3 rounded-full transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
+            <button class="carousel-indicator w-3 h-3 bg-white rounded-full transition" data-slide="0"></button>
+            <button class="carousel-indicator w-3 h-3 bg-white/50 rounded-full transition" data-slide="1"></button>
+            <button class="carousel-indicator w-3 h-3 bg-white/50 rounded-full transition" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-stat="lives" data-count="1000">0</div>
+                    <div class="text-lg text-blue-200">Lives Impacted</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-stat="ministries" data-count="50">0</div>
+                    <div class="text-lg text-blue-200">Ministries</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-stat="students" data-count="200">0</div>
+                    <div class="text-lg text-blue-200">Students Trained</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-stat="years" data-count="15">0</div>
+                    <div class="text-lg text-blue-200">Years of Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">About Oasis IMG Ministries</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Oasis IMG Ministries is a vibrant Christian organization dedicated to spreading the Gospel of Jesus Christ and transforming lives across Ghana and beyond. Founded on the principles of faith, hope, and love, we are committed to empowering communities through spiritual guidance, education, and practical support.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Our mission is to be an oasis of hope and transformation, bringing the life-giving message of Christ to all who seek truth and purpose.
+                    </p>
+                    <a href="about.html" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition inline-block">
+                        Discover Our Story
+                    </a>
+                </div>
+                <div>
+                    <img src="assets/images/abt.jpg" alt="About Oasis IMG" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Ministries</h2>
+                <p class="text-lg text-gray-600">Serving God through diverse ministries</p>
+            </div>
+
+            <div id="ministries-preview" class="grid md:grid-cols-3 gap-8">
+                <!-- Dynamic content loaded from Firebase -->
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="ministries.html" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition inline-block">
+                    View All Ministries
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Leadership</h2>
+                <p class="text-lg text-gray-600">Meet the dedicated leaders guiding our ministry</p>
+            </div>
+
+            <div id="leadership-preview" class="grid md:grid-cols-4 gap-8">
+                <!-- Dynamic content loaded from Firebase -->
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="leadership.html" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition inline-block">
+                    Meet All Leaders
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Latest News & Updates</h2>
+                <p class="text-lg text-gray-600">Stay informed about our latest activities and announcements</p>
+            </div>
+
+            <div id="news-preview" class="grid md:grid-cols-3 gap-8">
+                <!-- Dynamic content loaded from Firebase -->
+                <div class="text-center col-span-3 py-8">
+                    <i class="fas fa-spinner fa-spin text-4xl text-blue-600"></i>
+                    <p class="text-gray-500 mt-4">Loading latest news...</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="obi/news.html" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition inline-block">
+                    View All News
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Upcoming Events</h2>
+                <p class="text-lg text-gray-600">Join us for our upcoming events and activities</p>
+            </div>
+
+            <div id="events-preview" class="grid md:grid-cols-3 gap-8">
+                <!-- Dynamic content loaded from Firebase -->
+                <div class="text-center col-span-3 py-8">
+                    <i class="fas fa-spinner fa-spin text-4xl text-blue-600"></i>
+                    <p class="text-gray-500 mt-4">Loading upcoming events...</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="obi/events.html" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition inline-block">
+                    View All Events
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Join us in our mission to transform lives and communities. Whether through volunteering, donations, or partnership, your support makes a real impact.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
+                    Get Involved
+                </a>
+                <a href="sponsor-student.html" class="bg-blue-800 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-900 transition">
+                    Sponsor a Student
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map & Contact Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Map -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Visit Us</h3>
+                    <div class="bg-gray-200 rounded-lg overflow-hidden h-96">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.8094572843564!2d-0.1870!3d5.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzYnMTMuMyJOIDDCsDExJzEzLjIiVw!5e0!3m2!1sen!2sgh!4v1234567890"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Address</h4>
+                                <p class="text-gray-600">Kasoa, New Market, Accra, Ghana, Kasoa</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-blue-600 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
+                                <p class="text-gray-600">+233 (0) 53 926 7422</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-blue-600 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                                <p class="text-gray-600">oasisimggh@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-blue-600 text-2xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Service Times</h4>
+                                <p class="text-gray-600">Sunday: 8:00 AM & 10:30 AM</p>
+                                <p class="text-gray-600">Wednesday: 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Oasis IMG</h4>
+                    <p class="text-gray-400">Transforming lives through the Gospel of Jesus Christ.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="ministries.html" class="text-gray-400 hover:text-white transition">Ministries</a></li>
+                        <li><a href="leadership.html" class="text-gray-400 hover:text-white transition">Leadership</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="obi/index.html" class="text-gray-400 hover:text-white transition">Bible Institute</a></li>
+                        <li><a href="admissions.html" class="text-gray-400 hover:text-white transition">Admissions</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition">Gallery</a></li>
+                        <li><a href="dashboard/login.html" class="text-gray-400 hover:text-white transition">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-2xl"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Follow us on social media</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Oasis IMG Ministries Ghana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admissions Modal -->
+    <div id="admissions-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full relative animate-slideIn">
+            <button onclick="closeAdmissionsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+
+            <div class="p-8 text-center">
+                <div class="mb-6">
+                    <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-graduation-cap text-blue-600 text-4xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Admissions Open!</h2>
+                    <p class="text-gray-600 text-lg">Oasis Bible Institute</p>
+                </div>
+
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    Transform your life through quality theological education. We're now accepting applications for our Diploma, Certificate, and Short Course programs.
+                </p>
+
+                <div class="space-y-3">
+                    <a href="obi/admissions.html" class="block w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold hover:bg-blue-700 transition">
+                        Apply Now
+                    </a>
+                    <button onclick="closeAdmissionsModal()" class="block w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-md font-semibold hover:bg-gray-200 transition">
+                        Maybe Later
+                    </button>
+                </div>
+
+                <p class="text-xs text-gray-500 mt-4">
+                    <label class="flex items-center justify-center cursor-pointer">
+                        <input type="checkbox" id="dont-show-again" class="mr-2">
+                        Don't show this again
+                    </label>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/main.js"></script>
+
+    <script type="module">
+        import { db } from './assets/js/firebase-config.js';
+        import { collection, getDocs, query, orderBy, limit, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Load Events
+        async function loadEvents() {
+            try {
+                const eventsContainer = document.getElementById('events-preview');
+                const currentDate = new Date().toISOString().split('T')[0];
+
+                const q = query(
+                    collection(db, 'events'),
+                    where('date', '>=', currentDate),
+                    orderBy('date', 'asc'),
+                    limit(3)
+                );
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    eventsContainer.innerHTML = `
+                        <div class="text-center col-span-3 py-8">
+                            <i class="fas fa-calendar-alt text-6xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500">No upcoming events at the moment</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                eventsContainer.innerHTML = '';
+                snapshot.forEach(docSnap => {
+                    const event = docSnap.data();
+                    const eventDate = new Date(event.date);
+
+                    eventsContainer.innerHTML += `
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                            <img src="${event.imageUrl || 'assets/images/default-event.jpg'}" alt="${event.title}" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    ${eventDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    ${event.time || 'TBA'}
+                                </div>
+                                ${event.location ? `
+                                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>
+                                        ${event.location}
+                                    </div>
+                                ` : ''}
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">${event.title}</h3>
+                                <p class="text-gray-600 mb-4">${event.description ? event.description.substring(0, 100) + '...' : ''}</p>
+                                <a href="obi/events.html" class="text-blue-600 hover:text-blue-700 font-semibold">
+                                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error loading events:', error);
+                document.getElementById('events-preview').innerHTML = `
+                    <div class="text-center col-span-3 py-8">
+                        <p class="text-red-500">Error loading events</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load Leadership
+        async function loadLeadership() {
+            try {
+                const leadershipContainer = document.getElementById('leadership-preview');
+
+                const q = query(
+                    collection(db, 'leadership'),
+                    orderBy('order', 'asc'),
+                    limit(4)
+                );
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    leadershipContainer.innerHTML = `
+                        <div class="text-center col-span-4 py-8">
+                            <p class="text-gray-500">No leadership information available</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                leadershipContainer.innerHTML = '';
+                snapshot.forEach(docSnap => {
+                    const leader = docSnap.data();
+
+                    leadershipContainer.innerHTML += `
+                        <div class="text-center group">
+                            <div class="relative mb-4 overflow-hidden rounded-lg">
+                                <img src="${leader.imageUrl || 'assets/images/default-avatar.jpg'}" alt="${leader.name}" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">${leader.name}</h3>
+                            <p class="text-blue-600 font-semibold mb-2">${leader.position || leader.title}</p>
+                            ${leader.bio ? `<p class="text-gray-600 text-sm">${leader.bio.substring(0, 80)}...</p>` : ''}
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error loading leadership:', error);
+                document.getElementById('leadership-preview').innerHTML = `
+                    <div class="text-center col-span-4 py-8">
+                        <p class="text-red-500">Error loading leadership</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load Ministries
+        async function loadMinistries() {
+            try {
+                const ministriesContainer = document.getElementById('ministries-preview');
+
+                const q = query(
+                    collection(db, 'ministries'),
+                    orderBy('createdAt', 'desc'),
+                    limit(3)
+                );
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    ministriesContainer.innerHTML = `
+                        <div class="text-center col-span-3 py-8">
+                            <p class="text-gray-500">No ministries available</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                ministriesContainer.innerHTML = '';
+                snapshot.forEach(docSnap => {
+                    const ministry = docSnap.data();
+
+                    ministriesContainer.innerHTML += `
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                            ${ministry.imageUrl ? `
+                                <img src="${ministry.imageUrl}" alt="${ministry.title}" class="w-full h-48 object-cover">
+                            ` : `
+                                <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                    <i class="fas ${ministry.icon || 'fa-church'} text-6xl text-white"></i>
+                                </div>
+                            `}
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">${ministry.title}</h3>
+                                <p class="text-gray-600 mb-4">${ministry.description ? ministry.description.substring(0, 120) + '...' : ''}</p>
+                                ${ministry.leader ? `
+                                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                                        <i class="fas fa-user mr-2"></i>
+                                        ${ministry.leader}
+                                    </div>
+                                ` : ''}
+                                <a href="ministries.html" class="text-blue-600 hover:text-blue-700 font-semibold">
+                                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error loading ministries:', error);
+                document.getElementById('ministries-preview').innerHTML = `
+                    <div class="text-center col-span-3 py-8">
+                        <p class="text-red-500">Error loading ministries</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', async () => {
+            await Promise.all([
+                loadEvents(),
+                loadLeadership(),
+                loadMinistries()
+            ]);
+        });
+    </script>
+
+    <script>
+        // Admissions Modal Functions
+        function closeAdmissionsModal() {
+            const modal = document.getElementById('admissions-modal');
+            const dontShowAgain = document.getElementById('dont-show-again').checked;
+
+            if (dontShowAgain) {
+                localStorage.setItem('hideAdmissionsModal', 'true');
+            }
+
+            modal.classList.add('hidden');
+        }
+
+        // Show modal on page load if not dismissed
+        window.addEventListener('load', () => {
+            const hideModal = localStorage.getItem('hideAdmissionsModal');
+            if (!hideModal) {
+                setTimeout(() => {
+                    document.getElementById('admissions-modal').classList.remove('hidden');
+                }, 1500); // Show after 1.5 seconds
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-slideIn {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</body>
+</html>
