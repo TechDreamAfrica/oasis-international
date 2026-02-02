@@ -1,6 +1,6 @@
 // Firebase Configuration
 import { db, auth } from './firebase-config.js';
-import { collection, addDoc, getDocs, query, orderBy, limit, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { collection, addDoc, getDocs, query, orderBy, limit, doc, setDoc, where, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { initSiteImages } from './site-images.js';
 
@@ -11,6 +11,679 @@ export { db, auth };
 
 // Initialize site images on page load
 initSiteImages();
+
+// ========== FIREBASE DATA FETCHING FUNCTIONS ==========
+
+// Fetch Ministries Data
+async function fetchMinistries() {
+    try {
+        const q = query(
+            collection(db, 'ministries'),
+            orderBy('createdAt', 'desc')
+        );
+        const snapshot = await getDocs(q);
+        const ministries = [];
+        snapshot.forEach(doc => {
+            ministries.push({ id: doc.id, ...doc.data() });
+        });
+        return ministries;
+    } catch (error) {
+        console.error('Error fetching ministries:', error);
+        return [];
+    }
+}
+
+// Fetch Leadership Data
+async function fetchLeadership() {
+    try {
+        const q = query(
+            collection(db, 'leadership'),
+            orderBy('position', 'asc')
+        );
+        const snapshot = await getDocs(q);
+        const leaders = [];
+        snapshot.forEach(doc => {
+            leaders.push({ id: doc.id, ...doc.data() });
+        });
+        return leaders;
+    } catch (error) {
+        console.error('Error fetching leadership:', error);
+        return [];
+    }
+}
+
+// Fetch Gallery Data
+async function fetchGallery() {
+    try {
+        const q = query(
+            collection(db, 'gallery'),
+            orderBy('createdAt', 'desc')
+        );
+        const snapshot = await getDocs(q);
+        const galleryItems = [];
+        snapshot.forEach(doc => {
+            galleryItems.push({ id: doc.id, ...doc.data() });
+        });
+        return galleryItems;
+    } catch (error) {
+        console.error('Error fetching gallery:', error);
+        return [];
+    }
+}
+
+// Fetch Blog Posts
+async function fetchBlogs() {
+    try {
+        const q = query(
+            collection(db, 'blogs'),
+            orderBy('publishDate', 'desc'),
+            limit(10)
+        );
+        const snapshot = await getDocs(q);
+        const blogs = [];
+        snapshot.forEach(doc => {
+            blogs.push({ id: doc.id, ...doc.data() });
+        });
+        return blogs;
+    } catch (error) {
+        console.error('Error fetching blogs:', error);
+        return [];
+    }
+}
+
+// Fetch Mission Updates/News
+async function fetchMissionUpdates() {
+    try {
+        const q = query(
+            collection(db, 'missionUpdates'),
+            orderBy('date', 'desc'),
+            limit(6)
+        );
+        const snapshot = await getDocs(q);
+        const updates = [];
+        snapshot.forEach(doc => {
+            updates.push({ id: doc.id, ...doc.data() });
+        });
+        return updates;
+    } catch (error) {
+        console.error('Error fetching mission updates:', error);
+        return [];
+    }
+}
+
+// Fetch Prayer Requests
+async function fetchPrayerRequests() {
+    try {
+        const q = query(
+            collection(db, 'prayerRequests'),
+            where('isPublic', '==', true),
+            orderBy('createdAt', 'desc'),
+            limit(5)
+        );
+        const snapshot = await getDocs(q);
+        const requests = [];
+        snapshot.forEach(doc => {
+            requests.push({ id: doc.id, ...doc.data() });
+        });
+        return requests;
+    } catch (error) {
+        console.error('Error fetching prayer requests:', error);
+        return [];
+    }
+}
+
+// Fetch Testimonials
+async function fetchTestimonials() {
+    try {
+        const q = query(
+            collection(db, 'testimonials'),
+            where('isApproved', '==', true),
+            orderBy('createdAt', 'desc'),
+            limit(3)
+        );
+        const snapshot = await getDocs(q);
+        const testimonials = [];
+        snapshot.forEach(doc => {
+            testimonials.push({ id: doc.id, ...doc.data() });
+        });
+        return testimonials;
+    } catch (error) {
+        console.error('Error fetching testimonials:', error);
+        return [];
+    }
+}
+
+// Fetch Ministry Statistics
+async function fetchStatistics() {
+    try {
+        const snapshot = await getDocs(collection(db, 'statistics'));
+        const stats = {};
+        snapshot.forEach(doc => {
+            stats[doc.id] = doc.data();
+        });
+        return stats;
+    } catch (error) {
+        console.error('Error fetching statistics:', error);
+        return {
+            churchesBuilt: { count: 80 },
+            orphanagesSupported: { count: 1 },
+            ministersEducated: { count: 1400 },
+            livesImpacted: { count: 25000000 }
+        };
+    }
+}
+
+// Submit Contact Form
+async function submitContactForm(formData) {
+    try {
+        const docRef = await addDoc(collection(db, 'contactSubmissions'), {
+            ...formData,
+            submittedAt: new Date(),
+            status: 'unread'
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        console.error('Error submitting contact form:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Submit Prayer Request
+async function submitPrayerRequest(requestData) {
+    try {
+        const docRef = await addDoc(collection(db, 'prayerRequests'), {
+            ...requestData,
+            createdAt: new Date(),
+            status: 'active'
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        console.error('Error submitting prayer request:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Submit Credential Application
+async function submitCredentialApplication(applicationData) {
+    try {
+        const docRef = await addDoc(collection(db, 'credentialApplications'), {
+            ...applicationData,
+            submittedAt: new Date(),
+            status: 'pending'
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        console.error('Error submitting credential application:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Submit Donation
+async function submitDonation(donationData) {
+    try {
+        const docRef = await addDoc(collection(db, 'donations'), {
+            ...donationData,
+            donatedAt: new Date(),
+            status: 'pending'
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        console.error('Error recording donation:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Export all functions for global access
+window.fetchMinistries = fetchMinistries;
+window.fetchLeadership = fetchLeadership;
+window.fetchGallery = fetchGallery;
+window.fetchBlogs = fetchBlogs;
+window.fetchMissionUpdates = fetchMissionUpdates;
+window.fetchPrayerRequests = fetchPrayerRequests;
+window.fetchTestimonials = fetchTestimonials;
+window.fetchStatistics = fetchStatistics;
+window.submitContactForm = submitContactForm;
+window.submitPrayerRequest = submitPrayerRequest;
+window.submitCredentialApplication = submitCredentialApplication;
+window.submitDonation = submitDonation;
+
+// ========== CONTENT RENDERING FUNCTIONS ==========
+
+// Render Ministries
+async function renderMinistries(containerId, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        container.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-4xl text-green-600"></i><p class="text-gray-500 mt-4">Loading ministries...</p></div>';
+        
+        const ministries = await fetchMinistries();
+        const displayMinistries = limit ? ministries.slice(0, limit) : ministries;
+        
+        if (displayMinistries.length === 0) {
+            container.innerHTML = '<div class="text-center py-8"><i class="fas fa-church text-6xl text-gray-300 mb-4"></i><p class="text-gray-500">No ministries available at the moment</p></div>';
+            return;
+        }
+
+        container.innerHTML = displayMinistries.map(ministry => `
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition mission-card">
+                <img src="${convertGoogleDriveUrl(ministry.imageUrl) || 'assets/images/default-ministry.jpg'}" alt="${ministry.title}" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">${ministry.title}</h3>
+                    <p class="text-gray-600 mb-4">${ministry.description}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-green-600 font-semibold">${ministry.category || 'Ministry'}</span>
+                        ${ministry.detailUrl ? `<a href="${ministry.detailUrl}" class="text-green-600 hover:text-green-700 transition">Learn More →</a>` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error rendering ministries:', error);
+        container.innerHTML = '<div class="text-center py-8 text-red-600"><i class="fas fa-exclamation-triangle text-4xl mb-4"></i><p>Error loading ministries</p></div>';
+    }
+}
+
+// Render Leadership
+async function renderLeadership(containerId, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        container.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-4xl text-green-600"></i><p class="text-gray-500 mt-4">Loading leadership...</p></div>';
+        
+        const leaders = await fetchLeadership();
+        const displayLeaders = limit ? leaders.slice(0, limit) : leaders;
+        
+        if (displayLeaders.length === 0) {
+            container.innerHTML = '<div class="text-center py-8"><i class="fas fa-users text-6xl text-gray-300 mb-4"></i><p class="text-gray-500">No leadership information available</p></div>';
+            return;
+        }
+
+        container.innerHTML = displayLeaders.map(leader => `
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center leader-card">
+                <img src="${convertGoogleDriveUrl(leader.photoUrl) || 'assets/images/default-leader.jpg'}" alt="${leader.name}" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${leader.name}</h3>
+                    <p class="text-green-600 font-semibold mb-3">${leader.position}</p>
+                    <p class="text-gray-600 text-sm">${leader.bio || ''}</p>
+                    ${leader.email ? `<p class="text-gray-500 text-xs mt-3"><i class="fas fa-envelope mr-1"></i>${leader.email}</p>` : ''}
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error rendering leadership:', error);
+        container.innerHTML = '<div class="text-center py-8 text-red-600"><i class="fas fa-exclamation-triangle text-4xl mb-4"></i><p>Error loading leadership</p></div>';
+    }
+}
+
+// Render Gallery
+async function renderGallery(containerId, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        container.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-4xl text-green-600"></i><p class="text-gray-500 mt-4">Loading gallery...</p></div>';
+        
+        const galleryItems = await fetchGallery();
+        const displayItems = limit ? galleryItems.slice(0, limit) : galleryItems;
+        
+        if (displayItems.length === 0) {
+            container.innerHTML = '<div class="text-center py-8"><i class="fas fa-images text-6xl text-gray-300 mb-4"></i><p class="text-gray-500">No gallery items available</p></div>';
+            return;
+        }
+
+        container.innerHTML = displayItems.map(item => `
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                <img src="${convertGoogleDriveUrl(item.imageUrl)}" alt="${item.title}" class="w-full h-64 object-cover cursor-pointer" onclick="openGalleryModal('${convertGoogleDriveUrl(item.imageUrl)}', '${item.title}', '${item.description || ''}')">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900">${item.title}</h3>
+                    ${item.description ? `<p class="text-gray-600 text-sm mt-2">${item.description}</p>` : ''}
+                    ${item.category ? `<span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mt-2">${item.category}</span>` : ''}
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error rendering gallery:', error);
+        container.innerHTML = '<div class="text-center py-8 text-red-600"><i class="fas fa-exclamation-triangle text-4xl mb-4"></i><p>Error loading gallery</p></div>';
+    }
+}
+
+// Render Mission Updates/News
+async function renderMissionUpdates(containerId, limit = 3) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        container.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-4xl text-green-600"></i><p class="text-gray-500 mt-4">Loading mission updates...</p></div>';
+        
+        const updates = await fetchMissionUpdates();
+        const displayUpdates = updates.slice(0, limit);
+        
+        if (displayUpdates.length === 0) {
+            container.innerHTML = '<div class="text-center py-8"><i class="fas fa-globe-africa text-6xl text-gray-300 mb-4"></i><p class="text-gray-500">No mission updates available</p></div>';
+            return;
+        }
+
+        container.innerHTML = displayUpdates.map(update => {
+            const updateDate = update.date ? new Date(update.date.seconds * 1000).toLocaleDateString() : 'Recent';
+            return `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    ${update.imageUrl ? `<img src="${convertGoogleDriveUrl(update.imageUrl)}" alt="${update.title}" class="w-full h-48 object-cover">` : ''}
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-green-600 font-semibold text-sm">${update.location || 'West Africa'}</span>
+                            <span class="text-gray-500 text-sm">${updateDate}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">${update.title}</h3>
+                        <p class="text-gray-600">${update.excerpt || update.description}</p>
+                        ${update.readMoreUrl ? `<a href="${update.readMoreUrl}" class="text-green-600 hover:text-green-700 transition mt-4 inline-block">Read More →</a>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    } catch (error) {
+        console.error('Error rendering mission updates:', error);
+        container.innerHTML = '<div class="text-center py-8 text-red-600"><i class="fas fa-exclamation-triangle text-4xl mb-4"></i><p>Error loading mission updates</p></div>';
+    }
+}
+
+// Render Statistics
+async function renderStatistics() {
+    try {
+        const stats = await fetchStatistics();
+        
+        // Update churches built
+        const churchesElement = document.querySelector('[data-stat="churches"]');
+        if (churchesElement && stats.churchesBuilt) {
+            animateCounter(churchesElement, stats.churchesBuilt.count || 80);
+        }
+        
+        // Update orphanages supported
+        const orphanageElement = document.querySelector('[data-stat="orphanage"]');
+        if (orphanageElement && stats.orphanagesSupported) {
+            animateCounter(orphanageElement, stats.orphanagesSupported.count || 1);
+        }
+        
+        // Update ministers educated
+        const ministersElement = document.querySelector('[data-stat="ministers"]');
+        if (ministersElement && stats.ministersEducated) {
+            animateCounter(ministersElement, stats.ministersEducated.count || 1400);
+        }
+        
+        // Update lives impacted
+        const livesElement = document.querySelector('[data-stat="lives"]');
+        if (livesElement && stats.livesImpacted) {
+            const count = stats.livesImpacted.count || 25000000;
+            livesElement.textContent = count > 1000000 ? `${Math.floor(count / 1000000)}M+` : count.toLocaleString();
+        }
+    } catch (error) {
+        console.error('Error rendering statistics:', error);
+    }
+}
+
+// Animate counter function
+function animateCounter(element, targetValue) {
+    const duration = 2000; // 2 seconds
+    const startTime = Date.now();
+    const startValue = 0;
+    
+    function updateCounter() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        }
+    }
+    
+    updateCounter();
+}
+
+// Export rendering functions
+window.renderMinistries = renderMinistries;
+window.renderLeadership = renderLeadership;
+window.renderGallery = renderGallery;
+window.renderMissionUpdates = renderMissionUpdates;
+window.renderStatistics = renderStatistics;
+
+// ========== GALLERY MODAL FUNCTIONS ==========
+
+// Gallery Modal
+function openGalleryModal(imageUrl, title, description) {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+    modal.innerHTML = `
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-full overflow-auto">
+            <div class="sticky top-0 bg-white p-4 flex justify-between items-center border-b">
+                <h3 class="text-xl font-bold text-gray-900">${title}</h3>
+                <button onclick="closeGalleryModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <img src="${imageUrl}" alt="${title}" class="w-full h-auto rounded-lg mb-4">
+                ${description ? `<p class="text-gray-600">${description}</p>` : ''}
+            </div>
+        </div>
+    `;
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeGalleryModal();
+        }
+    });
+    
+    document.body.appendChild(modal);
+    window.currentGalleryModal = modal;
+}
+
+function closeGalleryModal() {
+    if (window.currentGalleryModal) {
+        window.currentGalleryModal.remove();
+        window.currentGalleryModal = null;
+    }
+}
+
+// Export modal functions
+window.openGalleryModal = openGalleryModal;
+window.closeGalleryModal = closeGalleryModal;
+
+// ========== FORM HANDLING FUNCTIONS ==========
+
+// Enhanced Contact Form Handler
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                type: 'contact'
+            };
+
+            const result = await submitContactForm(data);
+            
+            if (result.success) {
+                showNotification('Message sent successfully! We will get back to you soon.', 'success');
+                contactForm.reset();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+            showNotification('Error sending message. Please try again later.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// Prayer Request Form Handler
+function setupPrayerRequestForm() {
+    const prayerForm = document.getElementById('prayer-request-form');
+    if (!prayerForm) return;
+
+    prayerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = prayerForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(prayerForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                request: formData.get('request'),
+                isPublic: formData.get('isPublic') === 'on',
+                isUrgent: formData.get('isUrgent') === 'on',
+                type: 'prayer'
+            };
+
+            const result = await submitPrayerRequest(data);
+            
+            if (result.success) {
+                showNotification('Prayer request submitted successfully! Our team will pray for you.', 'success');
+                prayerForm.reset();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('Error submitting prayer request:', error);
+            showNotification('Error submitting prayer request. Please try again later.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// Credential Application Form Handler
+function setupCredentialForm() {
+    const credentialForm = document.getElementById('credential-form');
+    if (!credentialForm) return;
+
+    credentialForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = credentialForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting Application...';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(credentialForm);
+            const data = Object.fromEntries(formData);
+            data.type = 'credential-application';
+
+            const result = await submitCredentialApplication(data);
+            
+            if (result.success) {
+                showNotification('Application submitted successfully! We will review and contact you soon.', 'success');
+                credentialForm.reset();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('Error submitting credential application:', error);
+            showNotification('Error submitting application. Please try again later.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+// Donation Form Handler
+function setupDonationHandling() {
+    const donationButtons = document.querySelectorAll('.donation-btn');
+    donationButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const amount = btn.getAttribute('data-amount');
+            if (amount === 'other') {
+                const customAmount = prompt('Enter your donation amount:');
+                if (customAmount && !isNaN(customAmount)) {
+                    processDonation(parseFloat(customAmount));
+                }
+            } else {
+                processDonation(parseFloat(amount));
+            }
+        });
+    });
+}
+
+function processDonation(amount) {
+    // Record donation intent
+    submitDonation({
+        amount: amount,
+        currency: 'USD',
+        purpose: 'ministry-support',
+        type: 'donation'
+    }).then(result => {
+        if (result.success) {
+            // Redirect to actual payment processor or show success
+            window.open('https://oasisintlministries.org/donate', '_blank');
+        }
+    });
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    const bgColor = type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600';
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+    
+    notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
+    notification.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas ${icon} mr-3"></i>
+            <span>${message}</span>
+            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(full)';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// Export form functions
+window.setupContactForm = setupContactForm;
+window.setupPrayerRequestForm = setupPrayerRequestForm;
+window.setupCredentialForm = setupCredentialForm;
+window.setupDonationHandling = setupDonationHandling;
+window.showNotification = showNotification;
 
 // Helper function to convert Google Drive share links to direct image URLs
 function convertGoogleDriveUrl(url) {
