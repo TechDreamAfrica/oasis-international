@@ -158,23 +158,28 @@ function switchTab(tabName) {
         case 'contacts':
             loadContacts();
             break;
+        case 'donations':
+            loadDonations();
+            break;
     }
 }
 
 // Dashboard
 async function loadDashboard() {
     try {
-        const [blogsCount, leadersCount, ministriesCount, galleryCount] = await Promise.all([
+        const [blogsCount, leadersCount, ministriesCount, galleryCount, donationsCount] = await Promise.all([
             getCollectionCount('blogs'),
             getCollectionCount('leadership'),
             getCollectionCount('ministries'),
-            getCollectionCount('gallery')
+            getCollectionCount('gallery'),
+            getCollectionCount('donations')
         ]);
         
         document.getElementById('blogs-count').textContent = blogsCount;
         document.getElementById('leadership-count').textContent = leadersCount;
         document.getElementById('ministries-count').textContent = ministriesCount;
         document.getElementById('gallery-count').textContent = galleryCount;
+        document.getElementById('donations-count').textContent = donationsCount;
     } catch (error) {
         console.error('Error loading dashboard:', error);
     }
@@ -183,6 +188,15 @@ async function loadDashboard() {
 async function getCollectionCount(collectionName) {
     const snapshot = await getDocs(collection(db, collectionName));
     return snapshot.size;
+}
+
+async function updateDashboardCount(collectionName) {
+    try {
+        const count = await getCollectionCount(collectionName);
+        document.getElementById(`${collectionName}-count`).textContent = count;
+    } catch (error) {
+        console.error(`Error updating ${collectionName} count:`, error);
+    }
 }
 
 // Blogs Management
@@ -1210,6 +1224,320 @@ window.deleteContact = async (id) => {
             showNotification('Error deleting contact. Please try again.', 'error');
         }
     }
+};
+
+// Donations Management Functions
+async function loadDonations() {
+    try {
+        const querySnapshot = await getDocs(query(collection(db, 'donations'), orderBy('createdAt', 'desc')));
+        const tbody = document.getElementById('donations-table-body');
+        tbody.innerHTML = '';
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ${data.firstName} ${data.lastName}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${data.email}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$${data.amount}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${data.donationType}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${formatDate(data.createdAt)}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                    <button onclick="viewDonation('${doc.id}')" class="text-blue-600 hover:text-blue-900">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button onclick="deleteDonation('${doc.id}')" class="text-red-600 hover:text-red-900">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error loading donations:', error);
+        showNotification('Error loading donations. Please try again.', 'error');
+    }
+}
+
+function showDonationForm(donation = null) {
+    const isEdit = donation !== null;
+    const modalTitle = isEdit ? 'Edit Donation' : 'Add New Donation';
+    
+    const formHtml = `
+        <form id="donation-form" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                    <input type="text" id="donation-firstName" name="firstName" required
+                           value="${isEdit ? donation.firstName : ''}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                    <input type="text" id="donation-lastName" name="lastName" required
+                           value="${isEdit ? donation.lastName : ''}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                <input type="email" id="donation-email" name="email" required
+                       value="${isEdit ? donation.email : ''}"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" id="donation-phone" name="phone"
+                       value="${isEdit ? (donation.phone || '') : ''}"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Donation Amount ($) *</label>
+                    <input type="number" id="donation-amount" name="amount" required min="1"
+                           value="${isEdit ? donation.amount : ''}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Donation Type *</label>
+                    <select id="donation-type" name="donationType" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="">Select Purpose</option>
+                        <option value="general" ${isEdit && donation.donationType === 'general' ? 'selected' : ''}>General Fund</option>
+                        <option value="church" ${isEdit && donation.donationType === 'church' ? 'selected' : ''}>Build a Church</option>
+                        <option value="orphan" ${isEdit && donation.donationType === 'orphan' ? 'selected' : ''}>Support Orphans</option>
+                        <option value="minister" ${isEdit && donation.donationType === 'minister' ? 'selected' : ''}>Train Ministers</option>
+                        <option value="mission" ${isEdit && donation.donationType === 'mission' ? 'selected' : ''}>Mission Trips</option>
+                        <option value="emergency" ${isEdit && donation.donationType === 'emergency' ? 'selected' : ''}>Emergency Relief</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Donation Frequency</label>
+                <select id="donation-frequency" name="frequency"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="one-time" ${isEdit && donation.frequency === 'one-time' ? 'selected' : ''}>One Time</option>
+                    <option value="monthly" ${isEdit && donation.frequency === 'monthly' ? 'selected' : ''}>Monthly</option>
+                    <option value="annually" ${isEdit && donation.frequency === 'annually' ? 'selected' : ''}>Annually</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea id="donation-message" name="message" rows="3"
+                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                          placeholder="Optional message from donor...">${isEdit ? (donation.message || '') : ''}</textarea>
+            </div>
+            
+            <div class="flex items-center">
+                <input type="checkbox" id="donation-newsletter" name="newsletter" ${isEdit && donation.newsletter ? 'checked' : ''}
+                       class="text-green-600 focus:ring-green-500">
+                <label for="donation-newsletter" class="ml-2 text-sm text-gray-600">
+                    Subscribed to newsletter
+                </label>
+            </div>
+            
+            <div class="flex justify-end space-x-3 pt-4">
+                <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                    ${isEdit ? 'Update Donation' : 'Save Donation'}
+                </button>
+            </div>
+        </form>
+    `;
+    
+    showModal(modalTitle, formHtml);
+    
+    // Set form submit handler
+    document.getElementById('donation-form').onsubmit = function(e) {
+        e.preventDefault();
+        if (isEdit) {
+            updateDonation(donation.id);
+        } else {
+            addDonation();
+        }
+    };
+}
+
+async function addDonation() {
+    const form = document.getElementById('donation-form');
+    const formData = new FormData(form);
+    
+    const donationData = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        amount: parseFloat(formData.get('amount')),
+        donationType: formData.get('donationType'),
+        frequency: formData.get('frequency'),
+        message: formData.get('message') || '',
+        newsletter: formData.get('newsletter') === 'on',
+        createdAt: serverTimestamp()
+    };
+    
+    try {
+        await addDoc(collection(db, 'donations'), donationData);
+        closeModal();
+        loadDonations();
+        updateDashboardCount('donations');
+        showNotification('Donation record added successfully!', 'success');
+    } catch (error) {
+        console.error('Error adding donation:', error);
+        showNotification('Error adding donation. Please try again.', 'error');
+    }
+}
+
+async function updateDonation(id) {
+    const form = document.getElementById('donation-form');
+    const formData = new FormData(form);
+    
+    const donationData = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        amount: parseFloat(formData.get('amount')),
+        donationType: formData.get('donationType'),
+        frequency: formData.get('frequency'),
+        message: formData.get('message') || '',
+        newsletter: formData.get('newsletter') === 'on',
+        updatedAt: serverTimestamp()
+    };
+    
+    try {
+        await updateDoc(doc(db, 'donations', id), donationData);
+        closeModal();
+        loadDonations();
+        showNotification('Donation record updated successfully!', 'success');
+    } catch (error) {
+        console.error('Error updating donation:', error);
+        showNotification('Error updating donation. Please try again.', 'error');
+    }
+}
+
+window.viewDonation = async (id) => {
+    try {
+        const docRef = doc(db, 'donations', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            const donation = docSnap.data();
+            showDonationDetails({ id, ...donation });
+        }
+    } catch (error) {
+        console.error('Error fetching donation:', error);
+        showNotification('Error loading donation details.', 'error');
+    }
+};
+
+function showDonationDetails(donation) {
+    const detailsHtml = `
+        <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Donor Name</label>
+                    <p class="text-sm text-gray-900">${donation.firstName} ${donation.lastName}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <p class="text-sm text-gray-900">${donation.email}</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Phone</label>
+                    <p class="text-sm text-gray-900">${donation.phone || 'Not provided'}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Amount</label>
+                    <p class="text-sm text-gray-900 font-semibold">$${donation.amount}</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Purpose</label>
+                    <p class="text-sm text-gray-900">${donation.donationType}</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Frequency</label>
+                    <p class="text-sm text-gray-900">${donation.frequency}</p>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Newsletter Subscription</label>
+                <p class="text-sm text-gray-900">${donation.newsletter ? 'Subscribed' : 'Not subscribed'}</p>
+            </div>
+            
+            ${donation.message ? `
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Message</label>
+                    <p class="text-sm text-gray-900">${donation.message}</p>
+                </div>
+            ` : ''}
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Date</label>
+                <p class="text-sm text-gray-900">${formatDate(donation.createdAt)}</p>
+            </div>
+            
+            <div class="flex justify-end space-x-3 pt-4 border-t">
+                <button onclick="closeModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">
+                    Close
+                </button>
+                <button onclick="editDonation('${donation.id}')" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                    Edit Donation
+                </button>
+            </div>
+        </div>
+    `;
+    
+    showModal('Donation Details', detailsHtml);
+}
+
+window.editDonation = async (id) => {
+    try {
+        const docRef = doc(db, 'donations', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            showDonationForm({ id, ...docSnap.data() });
+        }
+    } catch (error) {
+        console.error('Error fetching donation for edit:', error);
+        showNotification('Error loading donation for editing.', 'error');
+    }
+};
+
+window.deleteDonation = async (id) => {
+    if (confirm('Are you sure you want to delete this donation record?')) {
+        try {
+            await deleteDoc(doc(db, 'donations', id));
+            loadDonations();
+            updateDashboardCount('donations');
+            showNotification('Donation record deleted successfully!', 'success');
+        } catch (error) {
+            console.error('Error deleting donation:', error);
+            showNotification('Error deleting donation. Please try again.', 'error');
+        }
+    }
+};
+
+// Add donation functionality to modal system
+window.showAddModal = function(type) {
+    if (type === 'donation') {
+        showDonationForm();
+    }
+    // Add other types as needed
 };
 
 console.log('Admin panel initialized successfully');

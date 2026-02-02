@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Oasis International Ministries</title>
+    <meta name="description" content="Support Oasis International Ministries' mission in West Africa. Donate to build churches, support orphans, train ministers, and transform communities through the Gospel.">
+    <meta name="keywords" content="Donation, Support Ministry, Church Building, Orphan Support, Minister Training, West Africa Missions, Christian Giving">
+    <meta name="author" content="Oasis International Ministries">
+    <meta property="og:title" content="Donate | Oasis International Ministries">
+    <meta property="og:description" content="Support Oasis International Ministries' mission in West Africa. Donate to build churches, support orphans, train ministers, and transform communities through the Gospel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oasisimg.org/donation.html">
+    <meta property="og:image" content="https://oasisimg.org/assets/images/logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Donate | Oasis International Ministries">
+    <meta name="twitter:description" content="Support our mission to transform lives across West Africa through church building, orphan support, and minister training.">
+    <link rel="canonical" href="https://oasisimg.org/donation.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mission-green': '#10B981',
+                        'ministry-green': '#059669',
+                        'accent-green': '#D1FAE5'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo.jpg" alt="Oasis International Ministries Logo" class="h-12 w-auto" onerror="this.src='assets/images/logo.jpg';">
+                        <span class="ml-3 text-xl font-bold text-green-800">Oasis International Ministries</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu - Centered -->
+                <div class="hidden lg:flex items-center justify-center flex-1 mx-8">
+                    <div class="flex items-center space-x-6">
+                        <a href="index.html" class="text-gray-700 hover:text-green-800 transition">Home</a>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-green-800 transition flex items-center py-2">
+                                About <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="about.html" class="block px-4 py-2 hover:bg-green-50">About Us</a>
+                                <a href="leadership.html" class="block px-4 py-2 hover:bg-green-50">Our Founders</a>
+                                <a href="ministries.html" class="block px-4 py-2 hover:bg-green-50">Ministries</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-green-800 transition flex items-center py-2">
+                                Give <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="donation.html" class="block px-4 py-2 hover:bg-green-50">Make a Donation</a>
+                                <a href="#build-church" class="block px-4 py-2 hover:bg-green-50">Build a Church</a>
+                                <a href="#support-orphans" class="block px-4 py-2 hover:bg-green-50">Support Orphans</a>
+                                <a href="#support-ministers" class="block px-4 py-2 hover:bg-green-50">Support Ministers</a>
+                                <a href="#mission-trips" class="block px-4 py-2 hover:bg-green-50">Mission Trips</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <button class="text-gray-700 hover:text-green-800 transition flex items-center py-2">
+                                Resources <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md pt-2 w-56 z-50 top-full">
+                                <a href="credential-application.html" class="block px-4 py-2 hover:bg-green-50">Ministry Credentials</a>
+                                <a href="#tithes-dues" class="block px-4 py-2 hover:bg-green-50">Tithes and Dues</a>
+                                <a href="#camp-meeting" class="block px-4 py-2 hover:bg-green-50">Camp Meeting</a>
+                                <a href="#church-affiliation" class="block px-4 py-2 hover:bg-green-50">Church Affiliation</a>
+                            </div>
+                        </div>
+
+                        <a href="contact.html" class="text-gray-700 hover:text-green-800 transition">Contact</a>
+                        <a href="gallery.html" class="text-gray-700 hover:text-green-800 transition">Gallery</a>
+
+                        <a href="donation.html" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition font-semibold">
+                            Donate Now
+                        </a>
+
+                        <a href="admin.html" class="text-gray-700 hover:text-green-800 transition ml-2" title="Admin Panel">
+                            <i class="fas fa-user-cog text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-green-800">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-700">Home</a>
+                <a href="about.html" class="block text-gray-700">About Us</a>
+                <a href="leadership.html" class="block text-gray-700 pl-4">Our Founders</a>
+                <a href="ministries.html" class="block text-gray-700 pl-4">Ministries</a>
+                <a href="donation.html" class="block text-green-800 font-semibold">Donate</a>
+                <a href="#build-church" class="block text-gray-700 pl-4">Build a Church</a>
+                <a href="#support-orphans" class="block text-gray-700 pl-4">Support Orphans</a>
+                <a href="#support-ministers" class="block text-gray-700 pl-4">Support Ministers</a>
+                <a href="credential-application.html" class="block text-gray-700">Ministry Credentials</a>
+                <a href="contact.html" class="block text-gray-700">Contact</a>
+                <a href="gallery.html" class="block text-gray-700">Gallery</a>
+                <a href="admin.html" class="block text-gray-700"><i class="fas fa-user-cog mr-2"></i>Admin</a>
+                <a href="donation.html" class="w-full bg-green-600 text-white px-4 py-2 rounded-md text-center mt-2 block">Donate Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="mt-20 bg-gradient-to-r from-green-900 to-green-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Support Our Mission</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                    Your donation helps transform lives across West Africa through church building, 
+                    orphan support, and minister training programs.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#donation-form" class="bg-white text-green-900 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
+                        <i class="fas fa-heart mr-2"></i>Give Now
+                    </a>
+                    <a href="#impact" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-green-900 transition">
+                        See Our Impact
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Statistics -->
+    <section id="impact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your Impact in Numbers</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">See how your donations are making a real difference across West Africa</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <i class="fas fa-church text-4xl text-green-600 mb-4"></i>
+                    <div class="text-3xl font-bold text-green-800 mb-2">25+</div>
+                    <p class="text-gray-700">Churches Built</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <i class="fas fa-users text-4xl text-green-600 mb-4"></i>
+                    <div class="text-3xl font-bold text-green-800 mb-2">500+</div>
+                    <p class="text-gray-700">Ministers Trained</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <i class="fas fa-child text-4xl text-green-600 mb-4"></i>
+                    <div class="text-3xl font-bold text-green-800 mb-2">1,200+</div>
+                    <p class="text-gray-700">Children Supported</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <i class="fas fa-home text-4xl text-green-600 mb-4"></i>
+                    <div class="text-3xl font-bold text-green-800 mb-2">15+</div>
+                    <p class="text-gray-700">Orphanages Established</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Options -->
+    <section id="donation-options" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Choose Your Impact</h2>
+                <p class="text-xl text-gray-600">Select a specific ministry to support or give to our general fund</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Build a Church -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/building.jpg" alt="Church Building" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-church text-green-600 mr-2"></i>Build a Church
+                        </h3>
+                        <p class="text-gray-600 mb-4">Help us construct churches in remote communities across West Africa. $25,000 builds a complete church facility.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Seats 200+ congregation members</li>
+                                <li>• Creates community gathering space</li>
+                                <li>• Provides local employment</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('church', 25000)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Support Church Building
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Support Orphans -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/orphan.jpg" alt="Children" class="w-full h-48 object-cover" onerror="this.src='assets/images/children.jpg';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-child text-green-600 mr-2"></i>Support Orphans
+                        </h3>
+                        <p class="text-gray-600 mb-4">Provide food, shelter, education, and love to orphaned children. $50/month supports one child fully.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Daily meals and nutrition</li>
+                                <li>• Education and school supplies</li>
+                                <li>• Medical care and clothing</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('orphan', 50)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Sponsor a Child
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Train Ministers -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/class.jpg" alt="Minister Training" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-graduation-cap text-green-600 mr-2"></i>Train Ministers
+                        </h3>
+                        <p class="text-gray-600 mb-4">Equip local leaders with biblical training and ministry skills. $500 trains one minister for a full program.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Biblical training curriculum</li>
+                                <li>• Leadership development</li>
+                                <li>• Ministry materials and resources</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('minister', 500)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Train a Minister
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mission Trips -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/mission.jpg" alt="Mission Trip" class="w-full h-48 object-cover" onerror="this.src='assets/images/building.jpg';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-plane text-green-600 mr-2"></i>Mission Trips
+                        </h3>
+                        <p class="text-gray-600 mb-4">Support mission teams traveling to serve communities. $2,000 sponsors a complete mission trip.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Medical and dental care</li>
+                                <li>• Community outreach events</li>
+                                <li>• Construction and repair work</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('mission', 2000)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Support Mission Trip
+                        </button>
+                    </div>
+                </div>
+
+                <!-- General Fund -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/logo.jpg" alt="General Fund" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-hands-helping text-green-600 mr-2"></i>General Fund
+                        </h3>
+                        <p class="text-gray-600 mb-4">Support all our ministries with flexible funding for our greatest needs across all programs.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Supports all ministry areas</li>
+                                <li>• Responds to urgent needs</li>
+                                <li>• Administrative efficiency</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('general', 0)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Give to General Fund
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Emergency Relief -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="assets/images/relief.jpg" alt="Emergency Relief" class="w-full h-48 object-cover" onerror="this.src='assets/images/building.jpg';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <i class="fas fa-first-aid text-green-600 mr-2"></i>Emergency Relief
+                        </h3>
+                        <p class="text-gray-600 mb-4">Provide immediate assistance during natural disasters, emergencies, and humanitarian crises.</p>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <div class="text-sm text-green-700 mb-1">Impact:</div>
+                            <ul class="text-sm text-green-600 space-y-1">
+                                <li>• Emergency food and water</li>
+                                <li>• Temporary shelter assistance</li>
+                                <li>• Medical emergency care</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectDonationType('emergency', 0)" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">
+                            Support Emergency Relief
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form -->
+    <section id="donation-form" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Make Your Donation</h2>
+                <p class="text-xl text-gray-600">Every gift makes a difference in someone's life</p>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg p-8">
+                <form id="donationForm" class="space-y-6">
+                    <!-- Donation Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Donation Purpose</label>
+                        <select id="donationType" name="donationType" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                            <option value="general">General Fund - Where Needed Most</option>
+                            <option value="church">Build a Church - $25,000</option>
+                            <option value="orphan">Support Orphans - $50/month</option>
+                            <option value="minister">Train Ministers - $500</option>
+                            <option value="mission">Mission Trips - $2,000</option>
+                            <option value="emergency">Emergency Relief</option>
+                        </select>
+                    </div>
+
+                    <!-- Donation Frequency -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Donation Frequency</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="flex items-center p-4 border border-gray-300 rounded-md cursor-pointer hover:bg-green-50 transition">
+                                <input type="radio" name="frequency" value="one-time" checked class="text-green-600 focus:ring-green-500">
+                                <span class="ml-3 font-medium">One Time</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-300 rounded-md cursor-pointer hover:bg-green-50 transition">
+                                <input type="radio" name="frequency" value="monthly" class="text-green-600 focus:ring-green-500">
+                                <span class="ml-3 font-medium">Monthly</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-300 rounded-md cursor-pointer hover:bg-green-50 transition">
+                                <input type="radio" name="frequency" value="annually" class="text-green-600 focus:ring-green-500">
+                                <span class="ml-3 font-medium">Annually</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Donation Amount -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Donation Amount (USD)</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                            <button type="button" onclick="setAmount(25)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$25</button>
+                            <button type="button" onclick="setAmount(50)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$50</button>
+                            <button type="button" onclick="setAmount(100)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$100</button>
+                            <button type="button" onclick="setAmount(250)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$250</button>
+                            <button type="button" onclick="setAmount(500)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$500</button>
+                            <button type="button" onclick="setAmount(1000)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$1,000</button>
+                            <button type="button" onclick="setAmount(2500)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">$2,500</button>
+                            <button type="button" onclick="setAmount(0)" class="amount-btn p-3 border border-gray-300 rounded-md hover:bg-green-50 transition">Other</button>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="donationAmount" name="amount" placeholder="Enter amount" min="1" 
+                                   class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <!-- Donor Information -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required 
+                                   class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required 
+                                   class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" 
+                               class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="4" 
+                                  class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                  placeholder="Share why you're supporting our mission..."></textarea>
+                    </div>
+
+                    <!-- Terms and Privacy -->
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 text-green-600 focus:ring-green-500">
+                        <label for="terms" class="ml-3 text-sm text-gray-600">
+                            I agree to the <a href="#" class="text-green-600 hover:underline">Terms of Service</a> 
+                            and <a href="#" class="text-green-600 hover:underline">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div class="flex items-start">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="mt-1 text-green-600 focus:ring-green-500">
+                        <label for="newsletter" class="ml-3 text-sm text-gray-600">
+                            Subscribe to our newsletter for ministry updates
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="bg-green-600 text-white px-12 py-4 rounded-md font-semibold hover:bg-green-700 transition transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-heart mr-2"></i>Complete Donation
+                        </button>
+                        <p class="text-sm text-gray-600 mt-3">Your donation is secure and tax-deductible</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Secure Payment Methods</h2>
+                <p class="text-gray-600">We accept multiple secure payment options for your convenience</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- PayPal -->
+                <div class="bg-white p-6 rounded-lg text-center shadow-md">
+                    <i class="fab fa-paypal text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">PayPal</h3>
+                    <p class="text-sm text-gray-600">Secure payment with your PayPal account or credit card</p>
+                </div>
+
+                <!-- Credit Cards -->
+                <div class="bg-white p-6 rounded-lg text-center shadow-md">
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
+                        <i class="fab fa-cc-mastercard text-3xl text-red-600"></i>
+                        <i class="fab fa-cc-amex text-3xl text-blue-500"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Credit Cards</h3>
+                    <p class="text-sm text-gray-600">Visa, MasterCard, American Express accepted</p>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div class="bg-white p-6 rounded-lg text-center shadow-md">
+                    <i class="fas fa-university text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Bank Transfer</h3>
+                    <p class="text-sm text-gray-600">Direct bank transfer for large donations</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <p class="text-sm text-gray-600">
+                    <i class="fas fa-lock text-green-600 mr-1"></i>
+                    All transactions are secured with SSL encryption
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Information -->
+    <section class="py-16 bg-green-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-6">Tax-Deductible Giving</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <i class="fas fa-file-invoice text-4xl text-green-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Tax Receipts</h3>
+                        <p>Receive immediate tax receipts for all donations via email</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-green-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">501(c)(3) Status</h3>
+                        <p>We are a registered nonprofit organization</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-calculator text-4xl text-green-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Tax Benefits</h3>
+                        <p>Your donation may qualify for tax deductions</p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <p class="text-green-200">
+                        Tax ID: XX-XXXXXXX | Consult your tax advisor for deduction eligibility
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="assets/images/logo.jpg" alt="Logo" class="h-12 w-12 rounded-full mr-3">
+                        <span class="text-xl font-bold">Oasis IMG</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Transforming lives across West Africa through the power of the Gospel.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="ministries.html" class="text-gray-400 hover:text-white transition">Our Ministries</a></li>
+                        <li><a href="leadership.html" class="text-gray-400 hover:text-white transition">Leadership</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white transition">Photo Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Get Involved</h3>
+                    <ul class="space-y-2">
+                        <li><a href="donation.html" class="text-gray-400 hover:text-white transition">Donate</a></li>
+                        <li><a href="#volunteer" class="text-gray-400 hover:text-white transition">Volunteer</a></li>
+                        <li><a href="sponsor-student.html" class="text-gray-400 hover:text-white transition">Sponsor a Student</a></li>
+                        <li><a href="#mission-trips" class="text-gray-400 hover:text-white transition">Mission Trips</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana</p>
+                        <p><i class="fas fa-phone mr-2"></i>+233 XXX XXX XXX</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@oasisimg.org</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Oasis International Ministries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Donation form functionality
+        function selectDonationType(type, amount) {
+            document.getElementById('donationType').value = type;
+            if (amount > 0) {
+                setAmount(amount);
+            }
+            document.getElementById('donation-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function setAmount(amount) {
+            document.getElementById('donationAmount').value = amount;
+            
+            // Update button styling
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('bg-green-600', 'text-white');
+                btn.classList.add('border-gray-300', 'hover:bg-green-50');
+            });
+            
+            if (amount > 0) {
+                event.target.classList.add('bg-green-600', 'text-white');
+                event.target.classList.remove('border-gray-300', 'hover:bg-green-50');
+            }
+        }
+
+        // Form submission
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const amount = formData.get('amount');
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const donationType = formData.get('donationType');
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid donation amount.');
+                return;
+            }
+            
+            // Here you would integrate with your payment processor
+            // For now, we'll show a success message
+            alert(`Thank you ${firstName} ${lastName}! Your donation of $${amount} for ${donationType} has been processed. You will receive a confirmation email at ${email}.`);
+        });
+
+        // Initialize mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
