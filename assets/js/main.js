@@ -727,70 +727,94 @@ function convertGoogleDriveUrl(url) {
 // Export helper function
 window.convertGoogleDriveUrl = convertGoogleDriveUrl;
 
-// Mobile Menu Toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
+// Mobile Menu Toggle - wrapped in DOMContentLoaded to ensure elements exist
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Mobile menu script loaded');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    console.log('Mobile menu button:', mobileMenuBtn);
+    console.log('Mobile menu element:', mobileMenu);
 
-if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
-}
-
-// Carousel Functionality
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const indicators = document.querySelectorAll('.carousel-indicator');
-const prevBtn = document.getElementById('prev-slide');
-const nextBtn = document.getElementById('next-slide');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.style.opacity = i === index ? '1' : '0';
-        slide.style.zIndex = i === index ? '10' : '1';
-    });
-
-    indicators.forEach((indicator, i) => {
-        if (i === index) {
-            indicator.style.background = 'white';
-        } else {
-            indicator.style.background = 'rgba(255, 255, 255, 0.5)';
-        }
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-if (prevBtn) {
-    prevBtn.addEventListener('click', prevSlide);
-}
-
-if (nextBtn) {
-    nextBtn.addEventListener('click', nextSlide);
-}
-
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-        currentSlide = index;
-        showSlide(currentSlide);
-    });
+    if (mobileMenuBtn && mobileMenu) {
+        console.log('Mobile menu elements found, adding event listener');
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Mobile menu button clicked');
+            mobileMenu.classList.toggle('hidden');
+            console.log('Menu hidden class toggled. Current classes:', mobileMenu.className);
+            
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) {
+                console.log('Icon found, toggling classes');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+                console.log('Icon classes:', icon.className);
+            }
+        });
+    } else {
+        console.error('Mobile menu elements not found!');
+        console.error('Button:', mobileMenuBtn);
+        console.error('Menu:', mobileMenu);
+    }
 });
 
-// Auto-advance carousel
-if (slides.length > 0) {
-    setInterval(nextSlide, 5000);
-}
+// Carousel Functionality - wrapped in DOMContentLoaded to ensure elements exist
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+
+    // Only proceed if slides exist
+    if (slides.length === 0) return;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.opacity = i === index ? '1' : '0';
+            slide.style.zIndex = i === index ? '10' : '1';
+        });
+
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.style.background = 'white';
+            } else {
+                indicator.style.background = 'rgba(255, 255, 255, 0.5)';
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    // Auto-advance carousel
+    if (slides.length > 0) {
+        setInterval(nextSlide, 5000);
+    }
+});
 
 // Stats Counter Animation
 function animateCounter(element, target, duration = 2000) {
